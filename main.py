@@ -4,46 +4,74 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-# import pandas as pd
 import numpy as np
+from matplotlib import pyplot as plt
 
 # train data (XOR Problem)
-x = np.array([[0,0],[0,1],[1,0],[1,1]])
-y = np.array([0,1,1,0])
+x = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([0, 1, 1, 0])
 
-# input - hidden Layer
-w1 = np.random.randn(2,2)
-b1 = np.random.randn(2,2)
+# Intialization
 
-# hidden - ouput layer
-w2 = np.random.randn(1,2)
+# input - hidden layer
+w1 = np.random.randn(2, 2)
+b1 = np.random.randn(1, 2)
+
+# hidden - output layer
+w2 = np.random.randn(1, 2)
 b2 = np.random.randn(1)
 
-# Epoch
+# epoch
 ep = 20000
-
-# Learning Rate
+# learning rate
 lr = 1
 mse = []
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    for i in range(ep):
-        E = np.array([])
-        result = np.array([])
+# Neural Networks 2-2-1
+for i in range(ep):
 
-        for j in range(len(x)):
-            Ha = np.array([])
+    E = np.array([])
+    result = np.array([])
 
-            # Feed Foward
-            # Input - Hidden Layer
-            for k in range(len(w1)):
-                Ha = np.append(Ha, 1 / (1 + np.exp(-(np.sum(x[j] * w1[k]) + b1[0][k]))))
-                # Use Sigmoid Function
+    for j in range(len(x)):
+        Ha = np.array([])
 
-            # Hidden - Output Layer
-            Hb = 1 / (1 + np.exp(-(np.sum(Ha * w2) + b2)))
+        # feedforward
+        # input - hidden layer
+        for k in range(len(w1)):
+            Ha = np.append(Ha, 1 / (1 + np.exp(-(np.sum(x[j] * w1[k]) + b1[0][k]))))
 
-            # Error
-            E = np.append(E , y[j] - Hb)
-            result = np.append(result, Hb)
+        # hideen - output layer
+        Hb = 1 / (1 + np.exp(-(np.sum(Ha * w2) + b2)))
+
+        # error
+        E = np.append(E, y[j] - Hb)
+        result = np.append(result, Hb)
+
+        # back-propagation
+        # output - hidden layer
+        alpha_2 = E[j] * Hb * (1 - Hb)
+
+        # hidden - input layer
+        alpha_1 = alpha_2 * Ha * (1 - Ha) * w2
+
+        # update
+        w2 = w2 + (lr * alpha_2 * Ha)
+        b2 = b2 + lr * alpha_2
+
+        w1 = w1 + np.ones((2, 2)) * lr * alpha_1 * x[j]
+        b1 = b1 + lr * alpha_1
+
+    print('EPOCH : %05d MSE : %04f RESULTS : 0 0 => %04f 0 1 => %04f 1 0 => %04f 1 1 => %04f'
+          % (i, np.mean(E ** 2), result[0], result[1], result[2], result[3]))
+
+    mse.append(np.mean(E ** 2))
+
+    # plot graph
+
+    # if i%100 == 0:
+    #     plt.xlabel('EPOCH')
+    #     plt.ylabel('MSE')
+    #     plt.title('MLP TEST')
+    #     plt.plot(mse)
+    #     plt.show()

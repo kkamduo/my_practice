@@ -17,6 +17,14 @@ b1 = np.random.randn(2,2)
 w2 = np.random.randn(1,2)
 b2 = np.random.randn(1)
 
+# Epoch
+
+ep = 20000
+
+# Learning Rate
+lr = 1
+mse = []
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     a = np.array(range(0, 6))

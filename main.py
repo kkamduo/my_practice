@@ -3,7 +3,6 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -69,9 +68,9 @@ for i in range(ep):
 
     # plot graph
 
-    # if i%100 == 0:
-    #     plt.xlabel('EPOCH')
-    #     plt.ylabel('MSE')
-    #     plt.title('MLP TEST')
-    #     plt.plot(mse)
-    #     plt.show()
+    if i%100 == 0:
+        plt.xlabel('EPOCH')
+        plt.ylabel('MSE')
+        plt.title('MLP TEST')
+        plt.plot(mse)
+        plt.show()

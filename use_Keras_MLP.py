@@ -17,5 +17,6 @@ model.compile(
 model.summary
 
 history = model.fit(x,y, epochs=100, batch_size=1)
-plt.plot(history,history['loss'])
+
+plt.plot(history.history['loss'])
 plt.show()

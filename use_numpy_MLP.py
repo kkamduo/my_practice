@@ -21,7 +21,7 @@ w2 = np.random.randn(1, 2)
 b2 = np.random.randn(1)
 
 # epoch
-ep = 20000
+ep = 5000
 # learning rate
 lr = 1
 mse = []

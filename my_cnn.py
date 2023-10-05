@@ -37,7 +37,7 @@ class my_cnn(nn.Module):
     def forward(self,x):
         # You can create as many convolutional layers as you want.
 
-        # Max pooling explain. (Oct 5)
+        # Max pooling explain. (Oct, 5)
 
         # STEP 1
         x = F.relu(self.conv1(x))

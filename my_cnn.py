@@ -44,3 +44,4 @@ class my_cnn(nn.Module):
         x = F.mish(self.conv2(x))
 
         # STEP 3
+        self.fc_layer(10*12*12,50)

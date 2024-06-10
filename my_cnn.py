@@ -106,3 +106,9 @@ if __name__ == "__main__":
         print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
                 test_loss, correct, len(test_loader.dataset),
                 100. * correct / len(test_loader.dataset)))
+        
+
+#0104 test
+        for i in pred :
+            t1 = i[0]
+            t2 = i[1].eq(m,k)

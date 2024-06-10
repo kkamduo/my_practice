@@ -1,6 +1,9 @@
 import numpy as np
 from im2col import *
 
+
+#CNN LAYER
+
 class Convolution:
     def __init__(self, W, b , stride = 1 , pad = 0):
         self.W = W
@@ -14,7 +17,7 @@ class Convolution:
         
         self.dW = None
         self.db = None
-    
+
     def forward(self, x):
         FN, C, FH, FW = self.W.shape
         N, C, H, W = x.shape
@@ -79,7 +82,7 @@ class Pooling:
 
         dcol = dmax.reshape(dmax.shape[0] * dmax.shape[1] * dmax.shape[2], -1)
         dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w, self.stride, self.pad)
-        
+
         return
 
 class Affine:
@@ -123,6 +126,8 @@ class SoftamaxWithLoss():
         self.loss = cross_entropy_error(self.y, self.t)
 
         return self.loss
+    
+    
 
 def Relu(x):
     return np.maximum(0, x)
